@@ -52,4 +52,16 @@ describe User do
     before { duplicate_user(user) }
     it { should_not be_valid }
   end
+
+  describe "with email in mixed case" do
+    let(:mixed_case) { "mIXeD@EMaiL.COm" }
+    before do
+      user.email = mixed_case
+      user.save
+    end
+
+    it "should be saved as lower-case" do
+      expect(user.reload.email).to eq(mixed_case.downcase)
+    end
+  end
 end

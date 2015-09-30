@@ -12,7 +12,7 @@ end
 
 def invalid_adresses
   %w{ user@foo,com user_at_foo.org example.user@foo.
-                    foo@bar_baz.com foo@bar+baz.com }
+                    foo@bar_baz.com foo@bar+baz.com foo@bar..com }
 end
 
 def valid_adresses
