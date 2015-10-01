@@ -13,12 +13,12 @@ group :test do
   gem 'factory_girl_rails', '4.5.0'
 end
 
-gem 'sqlite3'
 gem 'rails', '4.2.4'
 gem 'bootstrap-sass', '3.3.5.1'
 gem 'sass-rails', '5.0.4'
 gem 'pg', '0.18.3'
 gem 'uglifier', '2.7.1'
+gem 'sorcery', '0.9.1'
 gem 'coffee-rails', '4.1.0'
 gem 'jquery-rails', '4.0.5'
 gem 'turbolinks', '2.5.3'
