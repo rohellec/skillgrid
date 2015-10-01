@@ -1,5 +1,4 @@
 require 'rails_helper'
-require_relative '../support/utilities.rb'
 
 describe User do
   let(:user) { new_user }
@@ -7,6 +6,9 @@ describe User do
 
   it { should respond_to(:name) }
   it { should respond_to(:email) }
+  it { should respond_to(:password) }
+  it { should respond_to(:password_confirmation) }
+  it { should respond_to(:crypted_password) }
 
   it { should be_valid }
 
@@ -55,13 +57,25 @@ describe User do
 
   describe "with email in mixed case" do
     let(:mixed_case) { "mIXeD@EMaiL.COm" }
-    before do
-      user.email = mixed_case
-      user.save
-    end
 
-    it "should be saved as lower-case" do
+    it "should be saved in downcase" do
+      save_with_options(user, email: mixed_case)
       expect(user.reload.email).to eq(mixed_case.downcase)
     end
+  end
+
+  describe "with empty password" do
+    before { user.password = user.password_confirmation = '' }
+    it { should_not be_valid }
+  end
+
+  describe "with too short password" do
+    before { user.password = user.password_confirmation = 'a' * 5 }
+    it { should_not be_valid }
+  end
+
+  describe "with confirmation that doesn't match password" do
+    before { user.password_confirmation = 'mismatch' }
+    it { should_not be_valid }
   end
 end

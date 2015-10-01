@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  authenticates_with_sorcery!
   before_save { email.downcase! }
 
   validates :name, presence: true, length: { maximum: 50 }
@@ -8,4 +9,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, length: { maximum: 50 },
                     format: { with: VALID_EMAIL },
                     uniqueness: { case_sensitive: false }
+  validates :password, presence: true, confirmation: true,
+                       length: { minimum: 6 }
+  validates :password_confirmation, presence: true
 end
