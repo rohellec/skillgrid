@@ -1,0 +1,23 @@
+<% provide(:title, 'Log in') %>
+<h1>Log in</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_tag :login do %>
+      <%= label_tag :email %>
+      <%= text_field_tag :email, nil, class: 'form-control' %>
+
+      <%= label_tag :password %>
+      <%= password_field_tag :password, nil, class: 'form-control' %>
+
+      <%= label_tag :remember_me, false, class: 'checkbox inline' do %>
+        <%= check_box_tag :remember_me %>
+        <span>Remember me</span>
+      <% end %>
+
+      <%= submit_tag "Log in", class: 'btn btn-primary' %>
+    <% end %>
+
+    <p>New user? <%= link_to 'Sign up now!', signup_path %></p>
+  </div>
+</div>

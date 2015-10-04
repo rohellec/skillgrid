@@ -12,6 +12,13 @@ def fill_in_signup(user)
   fill_in "Confirmation", with: user.password
 end
 
+def valid_log_in(user)
+  visit login_path
+  fill_in "Email",    with: user.email
+  fill_in "Password", with: "foobar"
+  click_button login
+end
+
 def duplicate_user(user)
   duplicate = user.dup
   duplicate.email = user.email.upcase
