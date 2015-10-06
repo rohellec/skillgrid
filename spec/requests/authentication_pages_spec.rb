@@ -18,15 +18,15 @@ describe "Authentication Pages" do
   end
 
   describe "Log in Page" do
-    let(:login) { "Log in" }
     before { visit login_path }
 
     it { should have_title('Log in') }
     it { should have_selector('h1', text: 'Log in') }
 
     describe "authenticate" do
+
       describe "with invalid information" do
-        before { click_button login }
+        before { click_button "Log in" }
 
         it { should have_error_message('Incorrect') }
         it { should have_title('Log in') }
@@ -59,6 +59,23 @@ describe "Authentication Pages" do
             it_should_behave_like "logged out layout"
           end
         end
+      end
+    end
+  end
+
+  describe "authorization" do
+    let(:user) { FactoryGirl.create(:user) }
+
+    describe "for non-signed in user when attempting to access protected page" do
+      before do
+        visit edit_user_path(user)
+        fill_in "Email", with: user.email
+        fill_in "Password", with: "foobar"
+        click_button "Log in"
+      end
+
+      describe "after signing in" do
+        it { should have_title("Edit user") }
       end
     end
   end

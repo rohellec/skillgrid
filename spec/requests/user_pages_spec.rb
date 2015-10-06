@@ -42,7 +42,7 @@ describe "User pages" do
       let(:user) { new_user }
       let(:heading) { user.name }
       let(:title) { user.name }
-      before { fill_in_signup(user) }
+      before { fill_in_full_form(user) }
 
       it "should create a user" do
         expect { click_button submit }.to change(User, :count).by(1)
@@ -59,6 +59,42 @@ describe "User pages" do
           it { should_not have_success_message('Welcome') }
         end
       end
+    end
+  end
+
+  describe "Edit page" do
+    let(:title)   { "Edit user" }
+    let(:heading) { "Update your profile" }
+    let(:submit)  { "Save changes" }
+    let(:user) { FactoryGirl.create(:user) }
+    before do
+      valid_log_in(user)
+      visit edit_user_path(user)
+    end
+
+    it_should_behave_like "user pages"
+
+    describe "with invalid submission" do
+      before { click_button submit }
+
+      it_should_behave_like "user pages"
+      it { should have_error_message("error") }
+    end
+
+    describe "with valid submission" do
+      let(:new_name)  { "New Name" }
+      let(:new_email) { "newemail@example.com" }
+
+      before do
+        fill_in_full_form(user, name: new_name, email: new_email)
+        click_button submit
+      end
+
+      it { should have_title(new_name) }
+      it { should have_success_message("updated") }
+      it { should have_link("Log out")}
+      specify { expect(user.reload.name).to eq new_name }
+      specify { expect(user.reload.email).to eq new_email }
     end
   end
 end
