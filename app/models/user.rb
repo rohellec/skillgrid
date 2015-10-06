@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
                     format: { with: VALID_EMAIL },
                     uniqueness: { case_sensitive: false }
   validates :name, presence: true, length: { maximum: 50 }
-  validates :password, presence: true, confirmation: true,
-                       length: { minimum: 6 }
+  validates :password, presence: true, confirmation: true
+  validates :password, length: { minimum: 6 }, allow_blank: true
   validates :password_confirmation, presence: true
 end
