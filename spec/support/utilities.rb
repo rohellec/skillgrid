@@ -5,18 +5,18 @@ def new_user
            password: 'foobar', password_confirmation: 'foobar')
 end
 
-def fill_in_signup(user)
-  fill_in "Name",         with: user.name
-  fill_in "Email",        with: user.email
-  fill_in "Password",     with: user.password
-  fill_in "Confirmation", with: user.password
+def fill_in_full_form(user, options = {})
+  fill_in "Name",         with: (options[:name]  || user.name)
+  fill_in "Email",        with: (options[:email] || user.email)
+  fill_in "Password",     with: "foobar"
+  fill_in "Confirmation", with: "foobar"
 end
 
 def valid_log_in(user)
   visit login_path
   fill_in "Email",    with: user.email
   fill_in "Password", with: "foobar"
-  click_button login
+  click_button "Log in"
 end
 
 def duplicate_user(user)
