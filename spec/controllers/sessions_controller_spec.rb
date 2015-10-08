@@ -6,7 +6,7 @@ describe SessionsController do
     let (:password) { "foobar" }
     let (:user) { FactoryGirl.create(:user, password: password) }
 
-    describe "when log in with remembering" do
+    describe "with remembering" do
       before { login_user_and_remember(user, password: password) }
 
       specify "cookies should not be nil" do
@@ -14,7 +14,7 @@ describe SessionsController do
       end
     end
 
-    describe "when log in without remembering" do
+    describe "without remembering" do
       before { login_user(user, password: password) }
 
       specify "cookies should be nil" do

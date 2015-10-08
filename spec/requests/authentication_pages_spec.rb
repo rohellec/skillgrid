@@ -67,14 +67,17 @@ describe "Authentication Pages" do
     let(:user) { FactoryGirl.create(:user) }
 
     describe "for non-signed in user when attempting to access protected page" do
-      before do
-        visit edit_user_path(user)
-        fill_in "Email", with: user.email
-        fill_in "Password", with: "foobar"
-        click_button "Log in"
-      end
+      before { visit edit_user_path(user) }
+      it { should have_title("Log in") }
+      it { should have_error_message("log in") }
 
       describe "after signing in" do
+        before do
+          fill_in "Email", with: user.email
+          fill_in "Password", with: "foobar"
+          click_button "Log in"
+        end
+
         it { should have_title("Edit user") }
       end
     end
