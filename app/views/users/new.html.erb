@@ -6,6 +6,9 @@
     <%= form_for(@user) do |f| %>
       <%= render 'shared/error_messages' %>
 
+      <%= f.label :photo, "Upload your profile image" %>
+      <%= f.file_field :photo, class: "form-control" %>
+
       <%= f.label :name %>
       <%= f.text_field :name, class: 'form-control' %>
 
