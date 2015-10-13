@@ -183,6 +183,9 @@ aside {
       margin-bottom: 3px;
       margin-top: 0px;
     }
+    img {
+      margin: 10px 0;
+    }
   }
 }
 
@@ -190,4 +193,6 @@ aside {
   float: left;
   margin-right: 20px;
   border-radius: 100px;
+  height: 100px;
+  width: 100px;
 }
