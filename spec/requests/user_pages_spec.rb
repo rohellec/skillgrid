@@ -42,7 +42,7 @@ describe "User pages" do
       let(:user) { new_user }
       let(:heading) { user.name }
       let(:title) { user.name }
-      before { fill_in_full_form(user) }
+      before { fill_in_user_form(user) }
 
       it "should create a user" do
         expect { click_button submit }.to change(User, :count).by(1)
@@ -86,7 +86,7 @@ describe "User pages" do
       let(:new_email) { "newemail@example.com" }
 
       before do
-        fill_in_full_form(user, name: new_name, email: new_email)
+        fill_in_user_form(user, name: new_name, email: new_email)
         click_button submit
       end
 

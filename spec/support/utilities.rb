@@ -5,7 +5,7 @@ def new_user
            password: 'foobar', password_confirmation: 'foobar')
 end
 
-def fill_in_full_form(user, options = {})
+def fill_in_user_form(user, options = {})
   fill_in "Name",         with: (options[:name]  || user.name)
   fill_in "Email",        with: (options[:email] || user.email)
   fill_in "Password",     with: "foobar"
@@ -48,5 +48,11 @@ end
 RSpec::Matchers.define :have_success_message do |message|
   match do |page|
     expect(page).to have_selector('div.alert.alert-success', text: message)
+  end
+end
+
+RSpec::Matchers.define :have_warning_message do |message|
+  match do |page|
+    expect(page).to have_selector('div.alert.alert-warning', text: message)
   end
 end

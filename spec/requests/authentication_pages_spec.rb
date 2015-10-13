@@ -69,7 +69,7 @@ describe "Authentication Pages" do
     describe "for non-signed in user when attempting to access protected page" do
       before { visit edit_user_path(user) }
       it { should have_title("Log in") }
-      it { should have_error_message("log in") }
+      it { should have_warning_message("log in") }
 
       describe "after signing in" do
         before do
