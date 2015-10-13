@@ -16,6 +16,10 @@
 !/log/.keep
 /tmp
 
+# Ignore image assets for models
+/app/assets/images/products
+/app/assets/images/users
+
 #Ignore other unnecessary files
 database.yml
 doc/
