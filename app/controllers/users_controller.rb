@@ -44,7 +44,7 @@ class UsersController < ApplicationController
 
     # Overriden method for "require_login" filter of sorcery gem
     def not_authenticated
-      flash[:danger] = "Please log in first"
+      flash[:warning] = "Please log in first"
       redirect_to login_path
     end
 
