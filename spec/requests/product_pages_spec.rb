@@ -57,16 +57,21 @@ describe "Product Pages" do
   end
 
   describe "Index Page" do
-    before(:all) { 20.times { FactoryGirl.create(:product) } }
     before { visit products_path }
-    after(:all) { Product.delete_all }
 
     it { should have_title("All products") }
     it { should have_selector("h1", text: "All products") }
 
-    it "should list each product" do
-      Product.all.each do |product|
-        expect(page).to have_selector("li", text: product.title)
+    describe "pagination" do
+      before(:all) { 20.times { FactoryGirl.create(:product) } }
+      after(:all) { Product.delete_all }
+
+      it { should have_selector("div.pagination") }
+
+      it "should list each product" do
+        Product.paginate(page: 1, per_page: 15).each do |product|
+          expect(page).to have_selector("li", text: product.title)
+        end
       end
     end
   end
