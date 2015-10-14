@@ -2,10 +2,5 @@
 <h1>All products</h1>
 
 <ul class="products">
-  <%= @products.each do |product| %>
-    <li>
-      <%= image_tag product.photo.url(:small) %>
-      <%= link_to product.title, product %>
-    </li>
-  <% end %>
+  <%= render @products %>
 </ul>
