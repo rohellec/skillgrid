@@ -1,0 +1,10 @@
+<% provide(:title, @product.title) %>
+<div class="row">
+  <aside class="col-md-6">
+    <section>
+      <h1><%= @product.title %></h1>
+      <%= image_tag @product.photo.url(:medium), alt: "#{@product.title}" %>
+      <p><%= @product.description %></p>
+    </section>
+  </aside>
+</div>

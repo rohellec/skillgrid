@@ -5,4 +5,9 @@ FactoryGirl.define do
     password  "foobar"
     password_confirmation "foobar"
   end
+
+  factory :product do
+    sequence(:title) { |n| "Example Product #{n}" }
+    description Faker::Lorem.paragraph
+  end
 end

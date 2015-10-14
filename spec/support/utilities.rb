@@ -1,5 +1,16 @@
 include ApplicationHelper
 
+def new_product
+  Product.new(title: "Eaxmple Product",
+              description: "Neque dicta enim quasi. Qui corrupti est quisquam.
+              Facere animi quod aut. Qui nulla consequuntur consectetur sapiente.")
+end
+
+def fill_in_product_form(product)
+  fill_in "Title", with: product.title
+  fill_in "Description", with: product.description
+end
+
 def new_user
   User.new(name: 'Example User', email: 'user@example.com',
            password: 'foobar', password_confirmation: 'foobar')

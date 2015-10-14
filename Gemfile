@@ -16,6 +16,7 @@ end
 gem 'rails', '4.2.4'
 gem 'bootstrap-sass', '3.3.5.1'
 gem 'sass-rails', '5.0.4'
+gem 'faker', '1.5.0'
 gem 'paperclip', '4.3.1'
 gem 'pg', '0.18.3'
 gem 'uglifier', '2.7.1'

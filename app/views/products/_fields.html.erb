@@ -1,0 +1,10 @@
+<%= render "shared/error_messages", arg: @product %>
+
+<%= form.label :title %>
+<%= form.text_field :title, class: "form-control" %>
+
+<%= form.label :description %>
+<%= form.text_area :description, class: "form-control" %>
+
+<%= form.label :photo, "Upload product photo" %>
+<%= form.file_field :photo, class: "form-control" %>
