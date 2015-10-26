@@ -1,6 +1,10 @@
 <%= provide(:title, "All products") %>
 <h1>All products</h1>
 
+<%= link_to "Add new", new_product_path, class: "btn btn-primary" %>
+
+<br>
+
 <%= will_paginate %>
 
 <ul class="products">
