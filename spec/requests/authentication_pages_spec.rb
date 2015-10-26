@@ -5,13 +5,15 @@ describe "Authentication Pages" do
 
   shared_examples_for "logged in layout" do
     it { should have_link("Products") }
+    it { should have_link("Cart") }
     it { should have_link("Profile") }
     it { should have_link("Log out") }
     it { should_not have_link("Log in") }
   end
 
   shared_examples_for "logged out layout" do
-    it { should_not have_link("Products") }
+    it { should have_link("Products") }
+    it { should_not have_link("Cart") }
     it { should_not have_link("Profile") }
     it { should_not have_link("Log out") }
     it { should have_link("Log in") }
