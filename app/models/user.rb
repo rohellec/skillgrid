@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   authenticates_with_sorcery!
   has_attached_file :photo, styles: { medium: "100x100^" },
                      convert_options: { medium: "-gravity center -extent 100x100" },
-                     default_url: ":style/missing.png",
+                     default_url: ":style/missing-user.png",
                      url:  "/assets/:class/:attachment/:id_partition/:style/:filename",
                      path: ":rails_root/app/assets/images/:class/:attachment/:id_partition/:style/:filename"
   before_save { email.downcase! }
@@ -17,4 +17,7 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6 }, allow_blank: true
   validates :password_confirmation, presence: true
   validates_attachment :photo, content_type: { content_type: /\Aimage/ }
+
+  has_one :cart
+  after_create :create_cart
 end
