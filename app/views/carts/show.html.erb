@@ -1,0 +1,24 @@
+<%= provide(:title, "Cart") %>
+<h1>Your cart</h1>
+
+<% if @cart_items.empty? %>
+  <p>You didin't add any product</p>
+<% else %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Image</th>
+        <th>Title</th>
+        <th>Quantity</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @items_quantity.each_key.with_index(1) do |item, index| %>
+        <%= render "cart_items/cart_item",
+                    cart_item: item, quantity: @items_quantity[item], index: index %>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

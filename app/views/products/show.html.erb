@@ -2,9 +2,24 @@
 <div class="row">
   <aside class="col-md-6">
     <section>
-      <h1><%= @product.title %></h1>
+      <h1>
+        <%= @product.title %>
+        | <%= link_to "[Edit]", edit_product_path(@product) %>
+        | <%= link_to "[Delete]", @product, method: :delete, data: { confirm: "You sure?" } %>
+      </h1>
+
       <%= image_tag @product.photo.url(:medium), alt: "#{@product.title}" %>
+
       <p><%= @product.description %></p>
+
+      <% if logged_in? %>
+        <%= link_to "Add to Cart", cart_items_path(product_id: @product),
+                                   method: :post, class: "btn btn-default" %>
+        <% if @cart_items.count > 0 %>
+          <%= link_to "Remove from Cart", cart_item_path(@cart_items.first),
+                                          method: :delete, class: "btn btn-default" %>
+        <% end %>
+      <% end %>
     </section>
   </aside>
 </div>

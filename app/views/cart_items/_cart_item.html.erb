@@ -1,0 +1,7 @@
+<tr>
+  <td><%= index %></td>
+  <td><%= image_tag cart_item.product.photo.url(:small) %></td>
+  <td><%= link_to cart_item.product.title, cart_item.product %></td>
+  <td><%= quantity %></td>
+  <td><%= link_to "Remove", cart_item_path(cart_item), method: :delete %></td>
+</tr>
