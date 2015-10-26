@@ -1,14 +1,14 @@
 include ApplicationHelper
 
 def new_product
-  Product.new(title: "Eaxmple Product",
+  Product.new(title: "Example Product",
               description: "Neque dicta enim quasi. Qui corrupti est quisquam.
               Facere animi quod aut. Qui nulla consequuntur consectetur sapiente.")
 end
 
-def fill_in_product_form(product)
-  fill_in "Title", with: product.title
-  fill_in "Description", with: product.description
+def fill_in_product_form(product, options = {})
+  fill_in "Title",       with: (options[:title] || product.title)
+  fill_in "Description", with: (options[:description] || product.description)
 end
 
 def new_user
